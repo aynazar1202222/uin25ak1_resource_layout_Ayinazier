@@ -14,9 +14,7 @@ body{
 }
 
 nav{
-    background-color: #fff;
     padding: 1rem;
-    margin-bottom: 2rem;
 }
 
 nav ul{
@@ -40,3 +38,10 @@ nav ul li:hover{
     color:#2A324B;
 }
 
+#content{
+    max-width: 600px;
+    text-align: center;
+    padding: 1rem;
+    background-color: #fff;
+    width: 100%;
+}
