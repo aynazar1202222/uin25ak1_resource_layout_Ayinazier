@@ -23,3 +23,15 @@ function updateContent(category){
 
 
 //Bruk .map til å opptatere den vaglte nav
+navItmes.forEach(nav => nav.classList.remove('selected'))
+navItmes.forEach(nav => {
+    if(nav.textContent === category){
+        nav.classList.add('selected')
+    }
+})
+
+//opptatere innhold klar på array 0
+if(navItmes.length > 0 && resources.length >0){
+    updateContent(navItems[0].textContent)
+}
+
