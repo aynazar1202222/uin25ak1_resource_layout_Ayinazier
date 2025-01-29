@@ -1,7 +1,7 @@
 console.log(resources) //console logge resources på consolen
 
 //bruk av querySelectorAll til å få med alt i nav ul li (kilde: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_queryselectorall_class)
-const navItmes = document.querySelectorAll("nav ul li")
+const navItems = document.querySelectorAll("nav ul li")
 const content = document.createElement("article")
 document.body.appendChild(content)
 
@@ -13,25 +13,29 @@ function updateContent(category){
     if(resource) {
         content.innerHTML = `
             <h2>${resource.category}</h2>
-            <p>${resources.text}</p>
+            <p>${resource.text}</p>
             <ul>
-                ${resources.sources.map(source =>`<li><a href="${source.url}">${source.title}</a></li>`).join('')} 
+                ${resource.sources.map(source =>`<li><a href="${source.url}">${source.title}</a></li>`).join('')} 
             </ul>
         `
     }
 }
+//klick bar for nav 
+navItems.forEach(item =>{
+    item.addEventListener("click",() => {
+        updateContent(item.textContent)
 
-
-//Bruk .map til å opptatere den vaglte nav
-navItmes.forEach(nav => nav.classList.remove('selected'))
-navItmes.forEach(nav => {
-    if(nav.textContent === category){
-        nav.classList.add('selected')
-    }
+        //remove den valgte class og adde den til item
+        navItems.forEach(nav => nav.classList.remove('selected'))
+        item.classList.add('selected')
+    })
 })
 
+
 //opptatere innhold klar på array 0
-if(navItmes.length > 0 && resources.length >0){
+if(navItems.length > 0 && resources.length >0){
     updateContent(navItems[0].textContent)
+    navItems[0].classList.add('selected');
 }
+
 
