@@ -1,7 +1,10 @@
 export default function CategoryCard({ item }) {
-    return (
-      <article>
-        <h3>{item.name}</h3>
-      </article>
-    );
-  }
+  //const { slug } = useParams();
+
+  return (
+    <article className="gameCard">
+      <h3>{item.name}</h3>
+      <Link to={item.id}>Les mer {item.name}</Link>
+    </article>
+  );
+}
