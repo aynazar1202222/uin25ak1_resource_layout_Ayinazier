@@ -1,39 +1,64 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup(){
-    const [user, setUser] = useState ({})
+export default function Signup() {
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
-    const handelChange = (e) =>{
-        const inputValue = e.target.value;
-        const inputName = e.target.name;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
 
-        setUser((prev) =>(
-            { ...prev, [inputName] : inputValue }))
-        console.log(user)
-    }
+  const handleClick = (e) => {
+    e.preventDefault();
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log("User registered:", user);
+    navigate("/login");
+  };
 
-    return(
-        <section>
-        <h1>Registrer bruker</h1>
-        <form>
-            <label>
-                E-post
-                <input name="email" onChange={handelChange} type="email" placeholder="ainia@hiof..." />
-            </label>
-            <label>
-                Fullt navn
-                <input name="name" onChange={handelChange} type="text" placeholder="Aini Ayinazier" />
-            </label>
-            <label>
-                Brukernavn
-                <input name="username" onChange={handelChange} type="text" placeholder="Aynazar..." />
-            </label>
-            <label>
-                Passord 
-                <input name="password" onChange={handelChange} type="passeword" placeholder="*********" />
-            </label>
-            <button>Register</button>
-        </form>
+  return (
+    <section>
+      <h1>Register User</h1>
+      <form>
+        <label>
+          E-post
+          <input
+            name="email"
+            onChange={handleChange}
+            type="email"
+            placeholder="JhonnyBravo@...."
+          />
+        </label>
+        <label>
+          Full Name
+          <input
+            name="name"
+            onChange={handleChange}
+            type="text"
+            placeholder="Jhonny Bravo"
+          />
+        </label>
+        <label>
+          Username
+          <input
+            name="username"
+            onChange={handleChange}
+            type="text"
+            placeholder="Jhonny..."
+          />
+        </label>
+        <label>
+          Password
+          <input
+            name="password"
+            onChange={handleChange}
+            type="password"
+            placeholder="*"
+          />
+        </label>
+        <button onClick={handleClick}>Register New Account</button>
+      </form>
     </section>
-    )
+  );
 }
