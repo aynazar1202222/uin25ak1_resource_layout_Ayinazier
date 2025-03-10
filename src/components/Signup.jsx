@@ -7,7 +7,7 @@ export default function Signup() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prev) => ({ ...prev, [name]: value }));
+    setUser((prev) => ({ ...prev, [inputname]: inputvalue }));
   };
 
   const handleClick = (e) => {
